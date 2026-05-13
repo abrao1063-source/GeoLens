@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEO LENS — Briefing Topics</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* topics.html-specific layout */
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 36px 60px;
+    }
+    .page-title {
+      font-family: 'Fraunces', serif;
+      font-size: 56px; font-weight: 800;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .topic-card {
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+      padding: 24px;
+      cursor: pointer;
+      transition: all .25s;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .topic-card:hover { border-color: var(--accent); padding-left: 32px; }
+    .topic-card.active {
+      border-left: 3px solid var(--accent-2);
+      background: rgba(156,52,36,0.06);
+    }
+    .topic-card.active .tc-name { color: var(--accent); }
+    .tc-name  { font-family: 'Fraunces', serif; font-size: 22px; color: var(--paper); }
+    .tc-count { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+    .stats-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 40px;
+    }
+    @media (max-width: 700px) {
+      .topics-grid, .stats-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 2 · topics.html
+     OWNER: Member 2
+     Contains: Briefing Topics list, Stability Stats blocks
+     ============================================================ -->
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="left">
+    <span><b style="color:var(--accent)">◈ GEO·LENS</b></span>
+    <span>VOL. I · ISSUE 04</span>
+    <span>WEDNESDAY · 13 MAY 2026</span>
+  </div>
+  <div class="right">
+    <a href="index.html">HOME</a>
+    <a href="topics.html" class="active">TOPICS</a>
+    <a href="chat.html">ANALYST</a>
+    <a href="dashboard.html">DASHBOARD</a>
+    <span><span class="live-dot"></span>LIVE FEED</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;margin-bottom:12px;">
+    02 · BRIEFING TOPICS
+  </div>
+  <h1 class="page-title">Select a<br>Domain</h1>
+  <p style="font-family:'Inter',sans-serif;font-size:16px;color:var(--muted);margin-top:16px;line-height:1.6;">
+    Choose a topic to focus your intelligence briefing. Each domain draws on curated real-time feeds and historical datasets.
+  </p>
+
+  <!-- TOPICS GRID -->
+  <div class="topics-grid">
+
+    <div class="topic-card active" onclick="selectTopic(this, 'Wars &amp; Active Conflicts')">
+      <div>
+        <div class="tc-name">Wars &amp; Conflicts</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);margin-top:6px;">Gaza, Yemen, Syria &amp; more</div>
+      </div>
+      <span class="tc-count">12 active</span>
+    </div>
+
+    <div class="topic-card" onclick="selectTopic(this, 'Oil &amp; Energy Markets')">
+      <div>
+        <div class="tc-name">Oil &amp; Energy</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);margin-top:6px;">OPEC+, pipelines, Brent</div>
+      </div>
+      <span class="tc-count">$86.1</span>
+    </div>
+
+    <div class="topic-card" onclick="selectTopic(this, 'Political Ties &amp; Diplomacy')">
+      <div>
+        <div class="tc-name">Political Ties</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);margin-top:6px;">Abraham Accords, détentes</div>
+      </div>
+      <span class="tc-count">28 tracked</span>
+    </div>
+
+    <div class="topic-card" onclick="selectTopic(this, 'Regional Stability')">
+      <div>
+        <div class="tc-name">Regional Stability</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);margin-top:6px;">Index, risk ratings</div>
+      </div>
+      <span class="tc-count">6 / 10</span>
+    </div>
+
+    <div class="topic-card" onclick="selectTopic(this, 'Sanctions &amp; Sanctions Regimes')">
+      <div>
+        <div class="tc-name">Sanctions</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);margin-top:6px;">Iran, Syria, Houthi entities</div>
+      </div>
+      <span class="tc-count">14 regimes</span>
+    </div>
+
+    <div class="topic-card" onclick="selectTopic(this, 'Humanitarian Crises')">
+      <div>
+        <div class="tc-name">Humanitarian</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);margin-top:6px;">Displacement, aid corridors</div>
+      </div>
+      <span class="tc-count">8 zones</span>
+    </div>
+
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat-block">
+      <div class="label">Stability Index</div>
+      <div class="value">42<span style="font-size:18px;color:var(--muted)">/100</span></div>
+      <div class="delta">▼ 3.2 PTS · LAST 30 DAYS</div>
+    </div>
+
+    <div class="stat-block green">
+      <div class="label">Diplomatic Channels</div>
+      <div class="value">23</div>
+      <div class="delta" style="color:var(--green)">▲ 5 NEW THIS QUARTER</div>
+    </div>
+
+    <div class="stat-block">
+      <div class="label">Active Conflicts</div>
+      <div class="value">12</div>
+      <div class="delta">— UNCHANGED · 7 DAYS</div>
+    </div>
+
+    <div class="stat-block green">
+      <div class="label">Ceasefire Days · N. Syria</div>
+      <div class="value">14</div>
+      <div class="delta" style="color:var(--green)">▲ HOLDING</div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;text-align:center">
+    <a href="chat.html" style="
+      display:inline-block;
+      font-family:'JetBrains Mono',monospace;font-size:11px;
+      letter-spacing:.3em;text-transform:uppercase;
+      background:var(--accent);color:var(--ink);
+      padding:16px 40px;text-decoration:none;
+      border:none;cursor:pointer;transition:all .2s;
+    " onmouseover="this.style.background='var(--accent-2)';this.style.color='var(--paper)'"
+       onmouseout="this.style.background='var(--accent)';this.style.color='var(--ink)'">
+      ASK THE ANALYST ▸
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>© 2026 GEO·LENS · ACADEMIC PROJECT</div>
+  <div class="center">"Where the world watches, we read between the lines."</div>
+  <div>BUILT WITH GEMINI API · v0.1.0</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
