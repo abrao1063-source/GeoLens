@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEO LENS — The Analyst</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* chat.html-specific layout */
+    .chat-page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 100px 36px 60px;
+    }
+    .page-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; color: var(--accent);
+      letter-spacing: .3em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 3 · chat.html
+     OWNER: Member 3
+     Contains: AI Chatbot interface — The Analyst
+     ============================================================ -->
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="left">
+    <span><b style="color:var(--accent)">◈ GEO·LENS</b></span>
+    <span>VOL. I · ISSUE 04</span>
+    <span>WEDNESDAY · 13 MAY 2026</span>
+  </div>
+  <div class="right">
+    <a href="index.html">HOME</a>
+    <a href="topics.html">TOPICS</a>
+    <a href="chat.html" class="active">ANALYST</a>
+    <a href="dashboard.html">DASHBOARD</a>
+    <span><span class="live-dot"></span>LIVE FEED</span>
+  </div>
+</div>
+
+<div class="chat-page">
+  <div class="page-label">03 · THE ANALYST — POWERED BY GEMINI 2.5 PRO</div>
+
+  <div class="chat-wrap">
+
+    <!-- CHAT HEADER -->
+    <div class="chat-header">
+      <div class="h-left">
+        <div class="ai-badge">G</div>
+        <div>
+          <h2>The Analyst</h2>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.2em;">
+            POWERED BY GEMINI · CONTEXT-AWARE
+          </div>
+        </div>
+      </div>
+      <div class="status">● ONLINE</div>
+    </div>
+
+    <!-- CHAT AREA -->
+    <div class="chat-area" id="chatArea">
+
+      <!-- Opening bot message -->
+      <div class="msg bot">
+        <div class="meta-line">▸ THE ANALYST · 09:14 GMT</div>
+        <div class="bubble">
+          Good morning. I'm <strong>The Analyst</strong> — your briefing companion for Middle East affairs.
+          I draw on curated datasets and real-time signals covering <strong>wars, oil markets, political alliances,</strong> and <strong>regional stability</strong>.
+          <br><br>
+          Ask me anything — from the state of OPEC+ production cuts to the latest movements in the Saudi–Iran rapprochement.
+          <em>Where shall we begin?</em>
+          <span class="source">SOURCES: REUTERS · AL-MONITOR · CRISIS GROUP · IEA · 240+ FEEDS</span>
+        </div>
+      </div>
+
+      <!-- Sample exchange -->
+      <div class="msg user">
+        <div class="meta-line">▸ YOU · 09:15 GMT</div>
+        <div class="bubble">What's the current state of Saudi–Iran relations?</div>
+      </div>
+
+      <div class="msg bot">
+        <div class="meta-line">▸ THE ANALYST · 09:15 GMT</div>
+        <div class="bubble">
+          Since the <strong>March 2023 Beijing-brokered détente</strong>, Riyadh and Tehran have maintained a fragile but functional thaw.
+          Embassies have reopened, and there is renewed dialogue on <strong>Yemen, Lebanon, and Red Sea security</strong>.
+          <br><br>
+          However, three friction points remain active: <em>(1)</em> Houthi attacks on shipping,
+          <em>(2)</em> Iran's nuclear program, and <em>(3)</em> competing influence in Iraq.
+          Analysts rate the relationship as <strong>"cooperative but conditional."</strong>
+          <span class="source">SOURCES: ICG REPORT 2026-04 · MEED · REUTERS</span>
+        </div>
+      </div>
+
+    </div><!-- /chat-area -->
+
+    <!-- INPUT -->
+    <div class="input-area">
+      <input id="userInput" type="text"
+        placeholder="Ask The Analyst — e.g. 'How is OPEC+ responding to weakening demand?'" />
+      <button onclick="sendMessage()">SEND ▸</button>
+    </div>
+
+    <!-- QUICK CHIPS -->
+    <div class="suggestions">
+      <button class="chip" onclick="quickAsk('What is the current Brent crude price outlook?')">⛽ Oil outlook</button>
+      <button class="chip" onclick="quickAsk('Summarize the latest in Gaza and the West Bank.')">🛡 Gaza update</button>
+      <button class="chip" onclick="quickAsk('What are the major sanctions on Iran in 2026?')">⚖ Iran sanctions</button>
+      <button class="chip" onclick="quickAsk('How stable is Lebanon right now?')">🇱🇧 Lebanon</button>
+      <button class="chip" onclick="quickAsk('Explain the Abraham Accords status.')">🤝 Abraham Accords</button>
+    </div>
+
+  </div><!-- /chat-wrap -->
+</div><!-- /chat-page -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>© 2026 GEO·LENS · ACADEMIC PROJECT</div>
+  <div class="center">"Where the world watches, we read between the lines."</div>
+  <div>BUILT WITH GEMINI API · v0.1.0</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
