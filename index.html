@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEO LENS — Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1 · index.html
+     OWNER: Member 1
+     Contains: Top bar navigation, Masthead / Hero, News Ticker
+     ============================================================ -->
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="left">
+    <span><b style="color:var(--accent)">◈ GEO·LENS</b></span>
+    <span>VOL. I · ISSUE 04</span>
+    <span>WEDNESDAY · 13 MAY 2026</span>
+  </div>
+  <div class="right">
+    <a href="topics.html">TOPICS</a>
+    <a href="chat.html">ANALYST</a>
+    <a href="dashboard.html">DASHBOARD</a>
+    <span><span class="live-dot"></span>LIVE FEED</span>
+    <span>GEMINI 2.5 PRO</span>
+    <span>EN · AR · FA</span>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <h1>Geo<span class="amp">·</span>Lens</h1>
+  <p class="subtitle">A daily briefing on the world's most contested neighborhood.</p>
+  <p class="tagline">Middle East Intelligence · Powered by Gemini 2.5 Pro</p>
+</header>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="tag">BREAKING</span>Diplomatic talks resume between Riyadh and Tehran amid renewed Gulf tensions</span>
+    <span><span class="tag gold">OIL</span>Brent crude up 2.4% to $86.10 on regional supply concerns</span>
+    <span><span class="tag">CONFLICT</span>Ceasefire holds in northern Syria for 14th consecutive day</span>
+    <span><span class="tag green">DIPLOMACY</span>UAE hosts trilateral meeting on Red Sea shipping security</span>
+    <span><span class="tag gold">ECON</span>Egyptian pound stabilizes following IMF program review</span>
+    <span><span class="tag">ALERT</span>Strait of Hormuz traffic flagged for monitoring — naval activity elevated</span>
+    <span><span class="tag green">DEAL</span>Iraq-Turkey pipeline negotiations enter final phase</span>
+  </div>
+</div>
+
+<!-- LANDING LINKS -->
+<div style="max-width:1600px;margin:0 auto;padding:60px 36px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+
+  <a href="topics.html" style="text-decoration:none">
+    <div style="border:1px solid var(--line);padding:32px;background:var(--bg-2);transition:all .25s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--line)'">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;margin-bottom:16px;">01 · TOPICS</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:28px;color:var(--ink);margin-bottom:12px;">Briefing Topics</h2>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:var(--muted);line-height:1.6;">Wars, oil markets, political alliances, sanctions, humanitarian zones — select your briefing domain.</p>
+    </div>
+  </a>
+
+  <a href="chat.html" style="text-decoration:none">
+    <div style="border:1px solid var(--line);padding:32px;background:var(--bg-2);transition:all .25s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--line)'">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;margin-bottom:16px;">02 · ANALYST</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:28px;color:var(--ink);margin-bottom:12px;">The Analyst</h2>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:var(--muted);line-height:1.6;">Ask anything. Powered by Gemini 2.5 Pro — real-time Middle East intelligence at your fingertips.</p>
+    </div>
+  </a>
+
+  <a href="dashboard.html" style="text-decoration:none">
+    <div style="border:1px solid var(--line);padding:32px;background:var(--bg-2);transition:all .25s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--line)'">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;margin-bottom:16px;">03 · DASHBOARD</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:28px;color:var(--ink);margin-bottom:12px;">Regional Dashboard</h2>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:var(--muted);line-height:1.6;">Live threat map, stability indices, and oil spot prices across the Middle East.</p>
+    </div>
+  </a>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>© 2026 GEO·LENS · ACADEMIC PROJECT</div>
+  <div class="center">"Where the world watches, we read between the lines."</div>
+  <div>BUILT WITH GEMINI API · v0.1.0</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
