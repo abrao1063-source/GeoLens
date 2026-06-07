@@ -1,3 +1,5 @@
+raw
+Chat · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,16 +20,20 @@
       letter-spacing: .3em; text-transform: uppercase;
       margin-bottom: 28px;
     }
+    .typing {
+      font-style: italic; color: var(--muted); font-size: 13px;
+    }
   </style>
 </head>
 <body>
-
+ 
 <!-- ============================================================
      PAGE 3 · chat.html
      OWNER: Member 3
      Contains: AI Chatbot interface — The Analyst
+     CONNECTED to Flask backend at http://127.0.0.1:8000
      ============================================================ -->
-
+ 
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="left">
@@ -43,12 +49,12 @@
     <span><span class="live-dot"></span>LIVE FEED</span>
   </div>
 </div>
-
+ 
 <div class="chat-page">
-  <div class="page-label">03 · THE ANALYST — POWERED BY GEMINI 2.5 PRO</div>
-
+  <div class="page-label">03 · THE ANALYST — POWERED BY AI · DATABASE-DRIVEN</div>
+ 
   <div class="chat-wrap">
-
+ 
     <!-- CHAT HEADER -->
     <div class="chat-header">
       <div class="h-left">
@@ -56,76 +62,182 @@
         <div>
           <h2>The Analyst</h2>
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.2em;">
-            POWERED BY GEMINI · CONTEXT-AWARE
+            CONTEXT-AWARE · GROUNDED IN GEOLENS DATABASE
           </div>
         </div>
       </div>
       <div class="status">● ONLINE</div>
     </div>
-
+ 
     <!-- CHAT AREA -->
     <div class="chat-area" id="chatArea">
-
+ 
       <!-- Opening bot message -->
       <div class="msg bot">
         <div class="meta-line">▸ THE ANALYST · 09:14 GMT</div>
         <div class="bubble">
           Good morning. I'm <strong>The Analyst</strong> — your briefing companion for Middle East affairs.
-          I draw on curated datasets and real-time signals covering <strong>wars, oil markets, political alliances,</strong> and <strong>regional stability</strong>.
+          I draw on the <strong>GeoLens database</strong> covering Israel–Iran strike events, Hajj pilgrimage data, and live oil markets.
           <br><br>
-          Ask me anything — from the state of OPEC+ production cuts to the latest movements in the Saudi–Iran rapprochement.
+          Ask me anything — from casualty figures of recent strikes to which countries send the most Hajj pilgrims.
           <em>Where shall we begin?</em>
-          <span class="source">SOURCES: REUTERS · AL-MONITOR · CRISIS GROUP · IEA · 240+ FEEDS</span>
+          <span class="source">SOURCES: GEOLENS DATABASE · AL JAZEERA · ISW · WIKIPEDIA</span>
         </div>
       </div>
-
-      <!-- Sample exchange -->
-      <div class="msg user">
-        <div class="meta-line">▸ YOU · 09:15 GMT</div>
-        <div class="bubble">What's the current state of Saudi–Iran relations?</div>
-      </div>
-
-      <div class="msg bot">
-        <div class="meta-line">▸ THE ANALYST · 09:15 GMT</div>
-        <div class="bubble">
-          Since the <strong>March 2023 Beijing-brokered détente</strong>, Riyadh and Tehran have maintained a fragile but functional thaw.
-          Embassies have reopened, and there is renewed dialogue on <strong>Yemen, Lebanon, and Red Sea security</strong>.
-          <br><br>
-          However, three friction points remain active: <em>(1)</em> Houthi attacks on shipping,
-          <em>(2)</em> Iran's nuclear program, and <em>(3)</em> competing influence in Iraq.
-          Analysts rate the relationship as <strong>"cooperative but conditional."</strong>
-          <span class="source">SOURCES: ICG REPORT 2026-04 · MEED · REUTERS</span>
-        </div>
-      </div>
-
+ 
     </div><!-- /chat-area -->
-
+ 
     <!-- INPUT -->
     <div class="input-area">
       <input id="userInput" type="text"
-        placeholder="Ask The Analyst — e.g. 'How is OPEC+ responding to weakening demand?'" />
+        placeholder="Ask The Analyst — e.g. 'What strikes happened in Tehran?'" />
       <button onclick="sendMessage()">SEND ▸</button>
     </div>
-
+ 
     <!-- QUICK CHIPS -->
     <div class="suggestions">
-      <button class="chip" onclick="quickAsk('What is the current Brent crude price outlook?')">⛽ Oil outlook</button>
-      <button class="chip" onclick="quickAsk('Summarize the latest in Gaza and the West Bank.')">🛡 Gaza update</button>
-      <button class="chip" onclick="quickAsk('What are the major sanctions on Iran in 2026?')">⚖ Iran sanctions</button>
-      <button class="chip" onclick="quickAsk('How stable is Lebanon right now?')">🇱🇧 Lebanon</button>
-      <button class="chip" onclick="quickAsk('Explain the Abraham Accords status.')">🤝 Abraham Accords</button>
+      <button class="chip" onclick="quickAsk('What is the current Brent crude price?')">⛽ Oil price</button>
+      <button class="chip" onclick="quickAsk('What strikes happened in Tehran?')">💥 Tehran strikes</button>
+      <button class="chip" onclick="quickAsk('How many total casualties in the Iran-Israel conflict?')">⚠ Casualty count</button>
+      <button class="chip" onclick="quickAsk('Which countries send the most Hajj pilgrims?')">🕋 Hajj origins</button>
+      <button class="chip" onclick="quickAsk('Tell me about strikes on Iranian oil infrastructure.')">🛢 Oil sites hit</button>
     </div>
-
+ 
   </div><!-- /chat-wrap -->
 </div><!-- /chat-page -->
-
+ 
 <!-- FOOTER -->
 <footer class="footer">
   <div>© 2026 GEO·LENS · ACADEMIC PROJECT</div>
   <div class="center">"Where the world watches, we read between the lines."</div>
-  <div>BUILT WITH GEMINI API · v0.1.0</div>
+  <div>BUILT WITH FLASK + SQL SERVER + AI · v1.0.0</div>
 </footer>
-
-<script src="app.js"></script>
+ 
+<!-- =========================================================
+     BACKEND CONNECTION SCRIPT
+     ========================================================= -->
+<script>
+  // ⚠️ CHANGE THIS to your deployed backend URL when you deploy.
+  // For local demo, keep as 127.0.0.1:8000
+  const BACKEND_URL = 'http://127.0.0.1:8000/api/chat';
+ 
+  // Get or create a session ID (so chat history is grouped per visitor)
+  function getSessionId() {
+    let sid = localStorage.getItem('geolens_session');
+    if (!sid) {
+      sid = 'sess-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+      localStorage.setItem('geolens_session', sid);
+    }
+    return sid;
+  }
+ 
+  // Format current time as HH:MM GMT
+  function nowGMT() {
+    const d = new Date();
+    const h = String(d.getUTCHours()).padStart(2, '0');
+    const m = String(d.getUTCMinutes()).padStart(2, '0');
+    return `${h}:${m} GMT`;
+  }
+ 
+  // Add a message bubble to the chat area
+  function appendMessage(role, text, sources) {
+    const area = document.getElementById('chatArea');
+    const wrap = document.createElement('div');
+    wrap.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
+ 
+    const meta = document.createElement('div');
+    meta.className = 'meta-line';
+    meta.textContent = (role === 'user' ? '▸ YOU · ' : '▸ THE ANALYST · ') + nowGMT();
+ 
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    // Convert newlines into <br> so the bot reply formats properly
+    bubble.innerHTML = text.replace(/\n/g, '<br>');
+ 
+    if (sources) {
+      const src = document.createElement('span');
+      src.className = 'source';
+      src.textContent = 'SOURCES: ' + sources;
+      bubble.appendChild(src);
+    }
+ 
+    wrap.appendChild(meta);
+    wrap.appendChild(bubble);
+    area.appendChild(wrap);
+ 
+    // Auto-scroll to bottom
+    area.scrollTop = area.scrollHeight;
+    return wrap;
+  }
+ 
+  // Show a temporary "thinking..." bubble while waiting for backend
+  function appendTyping() {
+    const area = document.getElementById('chatArea');
+    const wrap = document.createElement('div');
+    wrap.className = 'msg bot';
+    wrap.id = 'typing-indicator';
+    wrap.innerHTML = `
+      <div class="meta-line">▸ THE ANALYST · ${nowGMT()}</div>
+      <div class="bubble typing">Analyzing the GeoLens database…</div>
+    `;
+    area.appendChild(wrap);
+    area.scrollTop = area.scrollHeight;
+  }
+ 
+  function removeTyping() {
+    const t = document.getElementById('typing-indicator');
+    if (t) t.remove();
+  }
+ 
+  // MAIN: send a user message to the backend
+  async function sendMessage() {
+    const input = document.getElementById('userInput');
+    const text = input.value.trim();
+    if (!text) return;
+ 
+    appendMessage('user', text);
+    input.value = '';
+    appendTyping();
+ 
+    try {
+      const response = await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: text,
+          session: getSessionId()
+        })
+      });
+ 
+      const data = await response.json();
+      removeTyping();
+ 
+      if (data.error) {
+        appendMessage('bot', '⚠ Error: ' + data.error);
+        return;
+      }
+ 
+      appendMessage('bot', data.reply);
+    } catch (err) {
+      removeTyping();
+      appendMessage('bot',
+        '⚠ Could not reach the Analyst backend. Make sure the Flask server is running at ' +
+        BACKEND_URL + '.<br><br>Error: ' + err.message
+      );
+    }
+  }
+ 
+  // Called by the suggestion chips
+  function quickAsk(question) {
+    document.getElementById('userInput').value = question;
+    sendMessage();
+  }
+ 
+  // Press Enter to send
+  document.getElementById('userInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+</script>
+ 
 </body>
 </html>
