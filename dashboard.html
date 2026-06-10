@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEO LENS — Regional Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* dashboard.html-specific layout */
+    .dash-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 36px 60px;
+    }
+    .page-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; color: var(--accent);
+      letter-spacing: .3em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .dash-grid .map-card { margin-bottom: 0; }
+    .right-cards { display: flex; flex-direction: column; gap: 24px; }
+    @media (max-width: 800px) {
+      .dash-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 4 · dashboard.html
+     OWNER: Member 4
+     Contains: Threat Map SVG, Stability Index table, Oil Prices
+     ============================================================ -->
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="left">
+    <span><b style="color:var(--accent)">◈ GEO·LENS</b></span>
+    <span>VOL. I · ISSUE 04</span>
+    <span>WEDNESDAY · 13 MAY 2026</span>
+  </div>
+  <div class="right">
+    <a href="index.html">HOME</a>
+    <a href="topics.html">TOPICS</a>
+    <a href="chat.html">ANALYST</a>
+    <a href="dashboard.html" class="active">DASHBOARD</a>
+    <span><span class="live-dot"></span>LIVE FEED</span>
+  </div>
+</div>
+
+<div class="dash-page">
+
+  <div class="page-label">04 · REGIONAL DASHBOARD — LIVE DATA</div>
+  <h1 style="font-family:'Fraunces',serif;font-size:52px;font-weight:800;color:var(--ink);line-height:1.1">
+    Middle East<br>At a Glance
+  </h1>
+
+  <!-- TICKER (repeated for context) -->
+  <div class="ticker" style="margin-top:32px">
+    <div class="ticker-track">
+      <span><span class="tag">BREAKING</span>Diplomatic talks resume between Riyadh and Tehran amid renewed Gulf tensions</span>
+      <span><span class="tag gold">OIL</span>Brent crude up 2.4% to $86.10 on regional supply concerns</span>
+      <span><span class="tag">CONFLICT</span>Ceasefire holds in northern Syria for 14th consecutive day</span>
+      <span><span class="tag green">DIPLOMACY</span>UAE hosts trilateral meeting on Red Sea shipping security</span>
+      <span><span class="tag gold">ECON</span>Egyptian pound stabilizes following IMF program review</span>
+      <span><span class="tag">ALERT</span>Strait of Hormuz traffic flagged for monitoring — naval activity elevated</span>
+      <span><span class="tag green">DEAL</span>Iraq-Turkey pipeline negotiations enter final phase</span>
+    </div>
+  </div>
+
+  <div class="dash-grid">
+
+    <!-- LEFT: THREAT MAP -->
+    <div>
+      <div class="map-card">
+        <h3>Threat Map · Live</h3>
+        <svg class="map-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="land" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%"   stop-color="#d8cdb4"/>
+              <stop offset="100%" stop-color="#c4b896"/>
+            </linearGradient>
+          </defs>
+          <rect width="300" height="200" fill="#ebe2d0"/>
+          <!-- Grid -->
+          <g stroke="rgba(26,24,20,0.06)" stroke-width="0.5">
+            <line x1="0"   y1="40"  x2="300" y2="40"/>
+            <line x1="0"   y1="80"  x2="300" y2="80"/>
+            <line x1="0"   y1="120" x2="300" y2="120"/>
+            <line x1="0"   y1="160" x2="300" y2="160"/>
+            <line x1="60"  y1="0"   x2="60"  y2="200"/>
+            <line x1="120" y1="0"   x2="120" y2="200"/>
+            <line x1="180" y1="0"   x2="180" y2="200"/>
+            <line x1="240" y1="0"   x2="240" y2="200"/>
+          </g>
+          <!-- Region blob -->
+          <path d="M40,60 Q70,40 110,50 Q150,35 190,55 Q230,45 260,75 Q270,100 250,130 Q220,160 180,155 Q140,165 110,150 Q70,155 50,130 Q30,100 40,60 Z"
+                fill="url(#land)" stroke="rgba(138,106,31,0.5)" stroke-width="0.8"/>
+          <!-- City / conflict dots -->
+          <g font-family="JetBrains Mono" font-size="6" fill="#1a1814">
+            <!-- Critical -->
+            <circle cx="135" cy="95" r="3" fill="#9c3424">
+              <animate attributeName="r"       values="3;7;3"   dur="2s"   repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="1;.2;1"  dur="2s"   repeatCount="indefinite"/>
+            </circle>
+            <circle cx="135" cy="95" r="2" fill="#9c3424"/>
+            <text x="142" y="97">GAZA</text>
+
+            <circle cx="115" cy="80" r="3" fill="#9c3424">
+              <animate attributeName="r"       values="3;7;3"   dur="2.3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="1;.2;1"  dur="2.3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="115" cy="80" r="2" fill="#9c3424"/>
+            <text x="122" y="82">SYRIA</text>
+
+            <!-- Elevated -->
+            <circle cx="165" cy="125" r="2" fill="#8a6a1f"/>
+            <text x="171"  y="127">YEMEN</text>
+            <circle cx="200" cy="105" r="2" fill="#8a6a1f"/>
+            <text x="206"  y="107">IRAN</text>
+            <circle cx="155" cy="105" r="2" fill="#8a6a1f"/>
+            <text x="161"  y="107">IRAQ</text>
+
+            <!-- Stable -->
+            <circle cx="170" cy="115" r="2"   fill="#4a6b2e"/>
+            <text x="176"  y="117">KSA</text>
+            <circle cx="195" cy="118" r="1.8" fill="#4a6b2e"/>
+            <text x="200"  y="120">UAE</text>
+            <circle cx="105" cy="95"  r="1.8" fill="#4a6b2e"/>
+            <text x="111"  y="97">LBN</text>
+          </g>
+          <!-- Compass -->
+          <g transform="translate(270,180)" font-family="JetBrains Mono" font-size="6" fill="#6b6555">
+            <text x="-2" y="-8">N</text>
+            <line x1="0" y1="-6" x2="0" y2="-2" stroke="#8a6a1f" stroke-width="0.8"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- LEGEND -->
+      <div class="map-card">
+        <h3>Legend</h3>
+        <div class="region-row">
+          <span class="name">🔴 Pulsing dot</span>
+          <span class="level critical">CRITICAL</span>
+        </div>
+        <div class="region-row">
+          <span class="name">🟡 Static dot</span>
+          <span class="level elevated">ELEVATED</span>
+        </div>
+        <div class="region-row">
+          <span class="name">🟢 Small dot</span>
+          <span class="level stable">STABLE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: DATA CARDS -->
+    <div class="right-cards">
+
+      <!-- STABILITY INDEX -->
+      <div class="map-card">
+        <h3>Stability Index · By Country</h3>
+        <div class="region-row"><span class="name">Gaza Strip</span><span class="level critical">CRITICAL</span></div>
+        <div class="region-row"><span class="name">Syria N.</span>  <span class="level critical">CRITICAL</span></div>
+        <div class="region-row"><span class="name">Yemen</span>     <span class="level elevated">ELEVATED</span></div>
+        <div class="region-row"><span class="name">Iran</span>      <span class="level elevated">ELEVATED</span></div>
+        <div class="region-row"><span class="name">Iraq</span>      <span class="level elevated">ELEVATED</span></div>
+        <div class="region-row"><span class="name">Lebanon</span>   <span class="level elevated">ELEVATED</span></div>
+        <div class="region-row"><span class="name">Saudi Arabia</span><span class="level stable">STABLE</span></div>
+        <div class="region-row"><span class="name">UAE</span>        <span class="level stable">STABLE</span></div>
+        <div class="region-row"><span class="name">Oman</span>       <span class="level calm">CALM</span></div>
+        <div class="region-row"><span class="name">Qatar</span>      <span class="level calm">CALM</span></div>
+      </div>
+
+      <!-- OIL PRICES -->
+      <div class="map-card">
+        <h3>Oil · Spot Prices</h3>
+        <div class="region-row">
+          <span class="name">Brent</span>
+          <span style="color:var(--green);font-family:'JetBrains Mono',monospace;font-size:13px">$86.10 ▲</span>
+        </div>
+        <div class="region-row">
+          <span class="name">WTI</span>
+          <span style="color:var(--green);font-family:'JetBrains Mono',monospace;font-size:13px">$81.85 ▲</span>
+        </div>
+        <div class="region-row">
+          <span class="name">OPEC Basket</span>
+          <span style="color:var(--accent-2);font-family:'JetBrains Mono',monospace;font-size:13px">$84.30 ▼</span>
+        </div>
+        <div class="region-row">
+          <span class="name">Dubai Crude</span>
+          <span style="color:var(--green);font-family:'JetBrains Mono',monospace;font-size:13px">$85.40 ▲</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center;padding:24px 0">
+        <a href="chat.html" style="
+          display:inline-block;
+          font-family:'JetBrains Mono',monospace;font-size:11px;
+          letter-spacing:.3em;text-transform:uppercase;
+          background:var(--accent);color:var(--ink);
+          padding:16px 40px;text-decoration:none;
+          transition:all .2s;
+        " onmouseover="this.style.background='var(--accent-2)';this.style.color='var(--paper)'"
+           onmouseout="this.style.background='var(--accent)';this.style.color='var(--ink)'">
+          ASK THE ANALYST ▸
+        </a>
+      </div>
+
+    </div><!-- /right-cards -->
+  </div><!-- /dash-grid -->
+
+</div><!-- /dash-page -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>© 2026 GEO·LENS · ACADEMIC PROJECT</div>
+  <div class="center">"Where the world watches, we read between the lines."</div>
+  <div>BUILT WITH GEMINI API · v0.1.0</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
